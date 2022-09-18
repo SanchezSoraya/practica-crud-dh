@@ -19,6 +19,8 @@ const controller = {
     })
     res.render("product-detail", { plato: platoEncontrado });
 
+  }, create: (req, res) => {
+    res.render("product-create-form");
   }
 }
 module.exports = controller;

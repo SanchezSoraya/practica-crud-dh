@@ -9,4 +9,10 @@ router.get("/list", productController.list);
 // detalle del producto 
 router.get("/detail/:id", productController.detail);
 
+// obtener el formulario 
+router.get("/create", productController.create);
+
+//agregando producto 
+
+
 module.exports = router
