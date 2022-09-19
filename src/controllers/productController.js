@@ -8,7 +8,7 @@ function findAlll() {
   return data;
 }
 
-function create(data) {
+function writeFile(data) {
   const dataString = JSON.stringify(data, null, 4);
   fs.writeFileSync(path.join(__dirname, "../data/products.json"), dataString);
 }
@@ -40,7 +40,7 @@ const controller = {
     }
 
     data.push(newProduct);
-    create(data);
+    writeFile(data);
 
     res.redirect("/products/create");
 
@@ -53,7 +53,17 @@ const controller = {
     res.render("product-update-form", { plato: platoEncontrado });
   },
   update: (req, res) => {
+    const data = findAlll()
+    const platoEncontrado = data.find(function (plato) {
+      return plato.id == req.params.id;
+    })
+    platoEncontrado.name = req.body.name;
+    platoEncontrado.price = req.body.price;
+    platoEncontrado.description = req.body.description;
 
+    writeFile(data);
+
+    res.redirect("/products/list");
   }
 }
 module.exports = controller;
