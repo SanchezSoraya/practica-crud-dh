@@ -16,5 +16,11 @@
         "name": "Milanesa",
         "price": "500",
         "description": "La mejor milanesa"
+    },
+    {
+        "id": 6,
+        "name": "churrasco",
+        "price": 12344,
+        "description": "Delicioso"
     }
 ]

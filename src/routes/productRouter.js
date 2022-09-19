@@ -13,6 +13,8 @@ router.get("/detail/:id", productController.detail);
 router.get("/create", productController.create);
 
 //agregando producto 
+router.post("/create", productController.store);
 
+//
 
 module.exports = router

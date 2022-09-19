@@ -1,10 +1,16 @@
 const fs = require("fs");
+const { reset } = require("nodemon");
 const path = require("path");
 
 function findAlll() {
   const jsonData = fs.readFileSync(path.join(__dirname, "../data/products.json"));
   const data = JSON.parse(jsonData);
   return data;
+}
+
+function create(data) {
+  const dataString = JSON.stringify(data, null, 4);
+  fs.writeFileSync(path.join(__dirname, "../data/products.json"), dataString);
 }
 
 const controller = {
@@ -21,6 +27,23 @@ const controller = {
 
   }, create: (req, res) => {
     res.render("product-create-form");
+  },
+  store: (req, res) => {
+    const data = findAlll()
+
+    const newProduct = {
+      id: data.length + 3,
+      name: req.body.name,
+      price: Number(req.body.price),
+      description: req.body.description
+
+    }
+
+    data.push(newProduct);
+    create(data);
+
+    res.redirect("/products/create");
+
   }
 }
 module.exports = controller;
