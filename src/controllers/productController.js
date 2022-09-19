@@ -44,6 +44,16 @@ const controller = {
 
     res.redirect("/products/create");
 
+  },
+  edit: (req, res) => {
+    const data = findAlll();
+    const platoEncontrado = data.find(function (plato) {
+      return plato.id == req.params.id;
+    })
+    res.render("product-update-form", { plato: platoEncontrado });
+  },
+  update: (req, res) => {
+
   }
 }
 module.exports = controller;
